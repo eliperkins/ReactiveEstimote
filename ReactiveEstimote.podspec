@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "ReactiveEstimote"
-  s.version          = "0.1.0"
+  s.version          = "0.1.1"
   s.summary          = "ReactiveCocoa extensions for the Estimote SDK."
   s.description      = <<-DESC
                        A few handy extensions for working with the Estimote SDK,
