@@ -37,7 +37,7 @@ static void RACUseDelegateProxy(ESTBeacon *self) {
 
 - (RACSignal *)rac_connect {
     @weakify(self);
-    RACSignal *signal = [RACSignal
+    RACSignal *signal = [[RACSignal
         defer:^RACSignal *{
             return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
                 @strongify(self);
@@ -71,7 +71,8 @@ static void RACUseDelegateProxy(ESTBeacon *self) {
                     // [self disconnect];
                 }];
             }];
-        }];
+        }]
+        setNameWithFormat:@"-rac_connect"];
 
     RACUseDelegateProxy(self);
     
@@ -80,7 +81,7 @@ static void RACUseDelegateProxy(ESTBeacon *self) {
 
 - (RACSignal *)rac_disconnect {
     @weakify(self);
-    RACSignal *signal = [RACSignal
+    RACSignal *signal = [[RACSignal
         defer:^RACSignal *{
             return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
                 @strongify(self);
@@ -98,7 +99,8 @@ static void RACUseDelegateProxy(ESTBeacon *self) {
                 
                 return nil;
             }];
-        }];
+        }]
+        setNameWithFormat:@"-rac_disconnect"];
 
     RACUseDelegateProxy(self);
     
@@ -108,7 +110,7 @@ static void RACUseDelegateProxy(ESTBeacon *self) {
 
 - (RACSignal *)rac_writeMajor:(NSInteger)major {
     @weakify(self);
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         @strongify(self);
         [self writeMajor:major completion:^(unsigned short value, NSError *error) {
             if (error) {
@@ -123,12 +125,12 @@ static void RACUseDelegateProxy(ESTBeacon *self) {
         }];
         
         return nil;
-    }];
+    }] setNameWithFormat:@"-rac_writeMajor: %d", major];
 }
 
 - (RACSignal *)rac_writeMinor:(NSInteger)minor {
     @weakify(self);
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         @strongify(self);
         [self writeMinor:minor completion:^(unsigned short value, NSError *error) {
             if (error) {
@@ -143,12 +145,12 @@ static void RACUseDelegateProxy(ESTBeacon *self) {
         }];
         
         return nil;
-    }];
+    }] setNameWithFormat:@"-rac_writeMinor: %d", minor];
 }
 
 - (RACSignal *)rac_writeProximityUUID:(NSUUID *)UUID {
     @weakify(self);
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         @strongify(self);
         [self writeProximityUUID:UUID.UUIDString completion:^(NSString *value, NSError *error) {
             if (error) {
@@ -163,7 +165,7 @@ static void RACUseDelegateProxy(ESTBeacon *self) {
         }];
         
         return nil;
-    }];
+    }] setNameWithFormat:@"-rac_writeProximityUUID: %@", UUID.UUIDString];
 }
 
 @end
