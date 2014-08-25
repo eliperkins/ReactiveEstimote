@@ -1,12 +1,3 @@
-#
-# Be sure to run `pod lib lint ReactiveEstimote.podspec' to ensure this is a
-# valid spec and remove all comments before submitting the spec.
-#
-# Any lines starting with a # are optional, but encouraged
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = "ReactiveEstimote"
   s.version          = "0.1.1"
@@ -20,7 +11,6 @@ Pod::Spec.new do |s|
                        for the connection to the device.
                        DESC
   s.homepage         = "https://github.com/eliperkins/ReactiveEstimote"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Eli Perkins" => "eli.j.perkins@gmail.com" }
   s.source           = { :git => "https://github.com/eliperkins/ReactiveEstimote.git", :tag => s.version.to_s }

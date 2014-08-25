@@ -20,7 +20,7 @@ const NSInteger ESTErrorSameValueCode = 411;
 
 static void RACUseDelegateProxy(ESTBeacon *self) {
     if (self.delegate == self.rac_delegateProxy) return;
-    
+
     self.rac_delegateProxy.rac_proxiedDelegate = self.delegate;
     self.delegate = (id)self.rac_delegateProxy;
 }
@@ -31,7 +31,7 @@ static void RACUseDelegateProxy(ESTBeacon *self) {
         proxy = [[RACDelegateProxy alloc] initWithProtocol:@protocol(ESTBeaconDelegate)];
         objc_setAssociatedObject(self, _cmd, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-    
+
     return proxy;
 }
 
@@ -47,21 +47,21 @@ static void RACUseDelegateProxy(ESTBeacon *self) {
                         return beacon;
                     }]
                     take:1];
-                
+
                 RACDisposable *disposable = [successSignal subscribe:subscriber];
-                
+
                 RACSignal *errorSignal = [[self.rac_delegateProxy
                     signalForSelector:@selector(beaconConnectionDidFail:withError:)]
                     reduceEach:^(ESTBeacon *beacon, NSError *error) {
                         return error;
                     }];
-                
+
                 RACDisposable *errorDisposable = [errorSignal subscribeNext:^(NSError *error) {
                     [subscriber sendError:error];
                 }];
-                
+
                 [self connect];
-                
+
                 return [RACDisposable disposableWithBlock:^{
                     [disposable dispose];
                     [errorDisposable dispose];
@@ -75,7 +75,7 @@ static void RACUseDelegateProxy(ESTBeacon *self) {
         setNameWithFormat:@"-rac_connect"];
 
     RACUseDelegateProxy(self);
-    
+
     return signal;
 }
 
@@ -94,16 +94,16 @@ static void RACUseDelegateProxy(ESTBeacon *self) {
                             [subscriber sendCompleted];
                         }
                     }];
-                
+
                 [self disconnect];
-                
+
                 return nil;
             }];
         }]
         setNameWithFormat:@"-rac_disconnect"];
 
     RACUseDelegateProxy(self);
-    
+
     return signal;
 
 }
@@ -123,9 +123,9 @@ static void RACUseDelegateProxy(ESTBeacon *self) {
                 [subscriber sendCompleted];
             }
         }];
-        
+
         return nil;
-    }] setNameWithFormat:@"-rac_writeMajor: %d", major];
+    }] setNameWithFormat:@"-rac_writeMajor: %d", (long)major];
 }
 
 - (RACSignal *)rac_writeMinor:(NSInteger)minor {
@@ -143,9 +143,9 @@ static void RACUseDelegateProxy(ESTBeacon *self) {
                 [subscriber sendCompleted];
             }
         }];
-        
+
         return nil;
-    }] setNameWithFormat:@"-rac_writeMinor: %d", minor];
+    }] setNameWithFormat:@"-rac_writeMinor: %d", (long)minor];
 }
 
 - (RACSignal *)rac_writeProximityUUID:(NSUUID *)UUID {
@@ -163,7 +163,7 @@ static void RACUseDelegateProxy(ESTBeacon *self) {
                 [subscriber sendCompleted];
             }
         }];
-        
+
         return nil;
     }] setNameWithFormat:@"-rac_writeProximityUUID: %@", UUID.UUIDString];
 }
