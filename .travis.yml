@@ -1,6 +1,11 @@
-# reference: http://www.objc.io/issue-6/travis-ci.html
-
 language: objective-c
-# before_install: cd Example && pod install && cd -
+xcode_sdk: iphonesimulator
+xcode_workspace: Example/ReactiveEstimote.xcworkspace
+xcode_scheme: ReactiveEstimote
+before_script:
+  - export LANG=en_US.UTF-8
+  - gem i slather --no-ri --no-rdoc
+before_install: cd Example && pod install && cd $TRAVIS_BUILD_DIR
 script:
-- xctool test -workspace Example/ReactiveEstimote.xcworkspace -scheme ReactiveEstimote -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- xcodebuild test -workspace Example/ReactiveEstimote.xcworkspace -scheme ReactiveEstimote -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
+after_success: slather

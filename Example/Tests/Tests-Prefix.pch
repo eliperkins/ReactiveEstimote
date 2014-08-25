@@ -8,6 +8,8 @@
 
   #define EXP_SHORTHAND
   #import <Specta/Specta.h>
+  #import <Specta/SpectaShorthands.h>
   #import <Expecta/Expecta.h>
+  #import <OCMock/OCMock.h>
 
 #endif

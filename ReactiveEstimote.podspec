@@ -10,27 +10,27 @@
 Pod::Spec.new do |s|
   s.name             = "ReactiveEstimote"
   s.version          = "0.1.0"
-  s.summary          = "A short description of ReactiveEstimote."
+  s.summary          = "ReactiveCocoa extensions for the Estimote SDK."
   s.description      = <<-DESC
-                       An optional longer description of ReactiveEstimote
+                       A few handy extensions for working with the Estimote SDK,
+                       together with ReactiveCocoa.
 
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
+                       This library came to be after attempting to work with editing
+                       properties of an `ESTBeacon` object, but needing to wait
+                       for the connection to the device.
                        DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/ReactiveEstimote"
+  s.homepage         = "https://github.com/eliperkins/ReactiveEstimote"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
-  s.author           = { "Eli Perkins" => "eli@robinpowered.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/ReactiveEstimote.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.author           = { "Eli Perkins" => "eli.j.perkins@gmail.com" }
+  s.source           = { :git => "https://github.com/eliperkins/ReactiveEstimote.git", :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/_eliperkins'
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes'
-  s.resources = 'Pod/Assets/*.png'
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'ReactiveCocoa', '~> 2.3.1'
+  s.dependency 'EstimoteSDK', '~> 2.0.1'
 end

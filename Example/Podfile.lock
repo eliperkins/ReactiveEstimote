@@ -1,0 +1,38 @@
+PODS:
+  - EstimoteSDK (2.0.1)
+  - Expecta (0.3.1)
+  - OCMock (3.1.1)
+  - ReactiveCocoa (2.3.1):
+    - ReactiveCocoa/UI
+  - ReactiveCocoa/Core (2.3.1):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.3.1)
+  - ReactiveCocoa/UI (2.3.1):
+    - ReactiveCocoa/Core
+  - ReactiveEstimote (0.1.0):
+    - EstimoteSDK (~> 2.0.1)
+    - ReactiveCocoa (~> 2.3.1)
+  - Specta (0.2.1)
+
+DEPENDENCIES:
+  - Expecta
+  - OCMock
+  - ReactiveEstimote (from `../`)
+  - Specta (from `https://github.com/specta/specta`, branch `0.3-wip`)
+
+EXTERNAL SOURCES:
+  ReactiveEstimote:
+    :path: ../
+  Specta:
+    :branch: 0.3-wip
+    :git: https://github.com/specta/specta
+
+SPEC CHECKSUMS:
+  EstimoteSDK: b6d533947e1aaa421b6cbc3aec517f25d1c0c9ec
+  Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
+  OCMock: f6cb8c162ab9d5620dddf411282c7b2c0ee78854
+  ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
+  ReactiveEstimote: d379527f82a74aa008cabb647f323d1442ddac28
+  Specta: 4d6fcee3363df686cc04de4666e18a3d43d8e8b0
+
+COCOAPODS: 0.33.1
