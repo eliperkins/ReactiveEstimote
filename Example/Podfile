@@ -3,9 +3,11 @@ target 'ReactiveEstimote', :exclusive => true do
 end
 
 target 'Tests', :exclusive => true do
+  inhibit_all_warnings!
+  
   pod "ReactiveEstimote", :path => "../"
 
-  pod 'Specta', :git => 'https://github.com/specta/specta', :branch => '0.3-wip'
+  pod 'Specta', '~> 0.2.1'
   pod 'Expecta'
   pod 'OCMock'
 end
