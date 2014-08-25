@@ -1,0 +1,10 @@
+target 'ReactiveEstimote', :exclusive => true do
+  pod "ReactiveEstimote", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "ReactiveEstimote", :path => "../"
+
+  pod 'Specta', '~> 0.2.1'
+  pod 'Expecta'
+end
